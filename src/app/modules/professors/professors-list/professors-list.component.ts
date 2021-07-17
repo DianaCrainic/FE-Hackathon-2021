@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { ProfessorsInfoComponent } from '../professors-info/professors-info.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProfessorsListComponent implements OnInit {
 
-  constructor(private service: SharedService, private router: Router, public accountService: AccountService) { }
+  constructor(private service: SharedService, public dialog: MatDialog, private router: Router, public accountService: AccountService) { }
 
   professorsList: any = [];
   searchProfessor = '';
@@ -56,13 +57,13 @@ export class ProfessorsListComponent implements OnInit {
   }
 
   openProfessorInfo(row: any): void {
-    // this.dialog.open(MovieDialogComponent,
-    //   {
-    //     data:
-    //     {
-    //       name: row.name
-    //     }
-    //   });
+    this.dialog.open(ProfessorsInfoComponent,
+      {
+        data:
+        {
+          name: row.name
+        }
+      });
   }
 
 

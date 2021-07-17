@@ -5,6 +5,7 @@ import { HomeComponent } from 'src/app/modules/home/home.component';
 import { ProfessorsComponent } from 'src/app/modules/professors/professors.component';
 import { ConversationsComponent } from 'src/app/modules/conversations/conversations.component';
 import { ProfessorsListComponent } from 'src/app/modules/professors/professors-list/professors-list.component';
+import { ProfessorsInfoComponent } from 'src/app/modules/professors/professors-info/professors-info.component';
 
 import { RegisterComponent } from 'src/app/modules/account/register/register.component';
 import { LoginComponent } from 'src/app/modules/account/login/login.component';
@@ -35,7 +36,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     LoginComponent,
     ProfessorsComponent,
     ConversationsComponent,
-    ProfessorsListComponent
+    ProfessorsListComponent,
+    ProfessorsInfoComponent
   ],
   imports: [
     CommonModule,

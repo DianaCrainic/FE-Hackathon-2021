@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../shared/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -11,31 +13,50 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
 
-  hide = true;
+  registerForm = this.formBuilder.group({
+    serialNumber: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
+  });
 
-  constructor(public service: AccountService, private router: Router, private toastr: ToastrService) { }
+  hide = true;
+  loading = false;
+
+  constructor(
+    public service: AccountService,
+    private router: Router,
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
+  ) { }
 
   ngOnInit(): void {
-    this.service.formModel.reset();
+    // this.service.formModel.reset();
+  }
+
+  get fields(): any {
+    return this.registerForm.controls;
   }
 
   onSubmit(): void {
-    this.service.register().subscribe(
-      (res: any) => {
-        if (res.succeeded) {
-          this.service.formModel.reset();
-          this.toastr.success('New user created!', 'Registration successful.');
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.authenticationService.register({
+      serialNumber: this.fields.serialNumber.value,
+      email: this.fields.email.value,
+      password: this.fields.password.value
+    }).pipe(first())
+      .subscribe(
+        () => {
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.toastr.error(error, 'Register failed.');
+          this.loading = false;
         }
-        this.router.navigateByUrl('/login');
-      },
-      err => {
-        if (err.status === 400) {
-          this.toastr.error('Serial Number or Email are already taken', 'Registration failed.');
-        }
-        else {
-          this.toastr.error(err.description, 'Registration failed.');
-        }
-      }
-    );
+      );
   }
 }
