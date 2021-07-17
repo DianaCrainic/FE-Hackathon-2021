@@ -6,6 +6,7 @@ import { ProfessorsComponent } from './modules/professors/professors.component';
 import { RegisterComponent } from './modules/account/register/register.component';
 import { LoginComponent } from './modules/account/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ConversationsComponent } from './modules/conversations/conversations.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
     }, {
       path: 'professors',
       component: ProfessorsComponent
+    }, {
+      path: 'conversations',
+      component: ConversationsComponent
     }, {
       path: 'register',
       component: RegisterComponent

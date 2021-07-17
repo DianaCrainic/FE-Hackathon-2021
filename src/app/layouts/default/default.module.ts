@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default.component';
 import { HomeComponent } from 'src/app/modules/home/home.component';
 import { ProfessorsComponent } from 'src/app/modules/professors/professors.component';
+import { ConversationsComponent } from 'src/app/modules/conversations/conversations.component';
+
 import { RegisterComponent } from 'src/app/modules/account/register/register.component';
 import { LoginComponent } from 'src/app/modules/account/login/login.component';
 
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { YouTubePlayerModule } from '@angular/youtube-player';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,14 +32,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    ProfessorsComponent
+    ProfessorsComponent,
+    ConversationsComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FlexLayoutModule,
     SharedModule,
-    YouTubePlayerModule,
     MatListModule,
     MatCardModule,
     MatButtonModule,

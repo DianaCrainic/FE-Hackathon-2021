@@ -11,6 +11,7 @@
     <div class="header-right">
       <span class="redirect" routerLink="">Home</span>
       <span class="redirect" routerLink="/professors">Professors</span>
+      <span class="redirect" routerLink="/conversations">My Conversations</span>
       <span class="redirect" *ngIf="!accountService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</span>
       <span class="redirect" *ngIf="!accountService.loggedIn()" routerLink="/login"  routerLinkActive="active">Login</span>
       <span class="redirect" *ngIf="accountService.loggedIn()" (click)="accountService.logout()">Logout</span>

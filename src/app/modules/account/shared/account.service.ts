@@ -15,14 +15,14 @@ export class AccountService {
     constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
     formModel = this.formBuilder.group({
-        username: ['', Validators.required],
+        number: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
     register(): Observable<any> {
         const body = {
-            username: this.formModel.value.username,
+            number: this.formModel.value.number,
             email: this.formModel.value.email,
             password: this.formModel.value.password
         };
