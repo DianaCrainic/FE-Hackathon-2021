@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="header">
+    <span class="app-name">Hackathon</span>
+    <div class="header-right">
+      <span class="redirect" routerLink="">Home</span>
+      <span class="redirect" routerLink="/professors">Professors</span>
+      <span class="redirect" *ngIf="!accountService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</span>
+      <span class="redirect" *ngIf="!accountService.loggedIn()" routerLink="/login"  routerLinkActive="active">Login</span>
+      <span class="redirect" *ngIf="accountService.loggedIn()" (click)="accountService.logout()">Logout</span>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+.header {
+  overflow: hidden;
+  background-color: #3F51B5;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 9;
+}
+
+.header span {
+  float: left;
+  text-align: center;
+  padding: 10px;
+  border-radius: none;
+  color: white;
+  margin-left: 20px;
+}
+
+.app-name {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.header-right {
+  float: right;
+  padding-right: 30px;
+  padding-top: 8px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .header span {
+    float: none;
+    display: block;
+    text-align: left;
+    padding-bottom: 20px;
+  }
+  
+  .header-right {
+    float: none;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    top: 0px;
+    width: 100%;
+    z-index: 9;
+  }
+
+}

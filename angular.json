@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "c12756f4-589c-4dbd-897a-eca2752ec1b2"
+    "analytics": "547fc3fc-a071-4bcd-b3dc-21b4acd2e602"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fe-hackathon": {
+    "angularapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fe-hackathon",
+            "outputPath": "dist/angularapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,8 +31,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -69,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fe-hackathon:build"
+            "browserTarget": "angularapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fe-hackathon:build:production"
+              "browserTarget": "angularapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fe-hackathon:build"
+            "browserTarget": "angularapp:build"
           }
         },
         "test": {
@@ -95,7 +96,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -118,16 +119,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fe-hackathon:serve"
+            "devServerTarget": "angularapp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "fe-hackathon:serve:production"
+              "devServerTarget": "angularapp:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "fe-hackathon"
+  "defaultProject": "angularapp"
 }
