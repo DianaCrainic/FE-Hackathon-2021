@@ -60,7 +60,7 @@ mat-footer-row mat-footer-cell{
     width: 32px;
 }
 
-.mat-column-trailerLink {
+.mat-column-interests, .mat-column-professor {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 28% !important;
@@ -77,17 +77,6 @@ mat-footer-row mat-footer-cell{
     color: #3F51B5;
   }
 
-.mat-column-releaseYear .mat-column-country {
-    justify-content: center;
-}
-
-.mat-column-rating {
-    justify-content: center;
-}
-
-.mat-column-options {
-    justify-content: center;
-}
 
 button {
     outline: none;

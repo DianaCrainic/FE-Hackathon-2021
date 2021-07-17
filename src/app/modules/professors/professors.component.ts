@@ -7,17 +7,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./professors.component.css']
 })
 export class ProfessorsComponent implements OnInit {
-
-
-  constructor(private titleService: Title,) { }
-
-  
+  constructor(private titleService: Title) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Professors');
   }
-
-
-  
-
 }

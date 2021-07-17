@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-professors-info',
@@ -9,9 +9,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ProfessorsInfoComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(
+    private titleService: Title,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+
   }
 
+  getProfessorId(): number {
+    return this.route.snapshot.params.id;
+  }
 }

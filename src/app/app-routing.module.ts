@@ -7,6 +7,7 @@ import { RegisterComponent } from './modules/account/register/register.component
 import { LoginComponent } from './modules/account/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ConversationsComponent } from './modules/conversations/conversations.component';
+import { ProfessorsInfoComponent } from './modules/professors/professors-info/professors-info.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,10 @@ const routes: Routes = [
       path: 'professors',
       component: ProfessorsComponent
     }, {
-      path: 'conversations',
+      path: 'professors/:id',
+      component: ProfessorsInfoComponent
+    }, {
+      path: 'conversations/:id',
       component: ConversationsComponent
     }, {
       path: 'register',
