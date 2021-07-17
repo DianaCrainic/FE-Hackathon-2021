@@ -1,1 +1,19 @@
-<p>professors-info works!</p>
+
+<div *ngFor="let th of thesis" class="example-card">
+    <mat-card >
+        <mat-card-title>
+            {{th.title}}
+        </mat-card-title>
+        <mat-card-content>
+            {{th.description}}
+        </mat-card-content>
+        <br><br>
+        <div *ngIf="th.student">
+            Assigned student: {{th.student}}
+        </div>
+        <div>
+            Assigned student: -
+        </div>
+
+    </mat-card>
+</div>
