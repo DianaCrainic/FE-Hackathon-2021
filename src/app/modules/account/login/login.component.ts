@@ -32,8 +32,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Login');
-    if (Object.keys(this.authenticationService.currentUserValue).length !== 0) {
-      this.router.navigate(['/']);
+    if (this.authenticationService.currentUserValue) {
+      if (Object.keys(this.authenticationService.currentUserValue).length !== 0) {
+        this.router.navigate(['/']);
+      }
     }
   }
 
@@ -51,14 +53,14 @@ export class LoginComponent implements OnInit {
       email: this.fields.email.value,
       password: this.fields.password.value
     }).pipe(first())
-      .subscribe(
-        () => {
-          this.router.navigate(['/']);
-        },
-        error => {
-          this.toastr.error('Invalid email or password', 'Authentication failed.');
-          this.loading = false;
-        }
-      );
+    .subscribe(
+      () => {
+        this.router.navigate(['/']);
+      },
+      error => {
+        this.toastr.error('Invalid email or password', 'Authentication failed.');
+        this.loading = false;
+      }
+    );
   }
 }

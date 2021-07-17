@@ -5,7 +5,9 @@ import { AccountService } from 'src/app/modules/account/shared/account.service';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfessorsInfoComponent } from '../professors-info/professors-info.component';
-
+import { Title } from '@angular/platform-browser';
+import { Professor } from 'src/app/shared/models/persons/professor.model';
+import { ProfessorService } from 'src/app/core/services/professors.service';
 
 @Component({
   selector: 'app-professors-list',
@@ -14,27 +16,34 @@ import { ProfessorsInfoComponent } from '../professors-info/professors-info.comp
 })
 export class ProfessorsListComponent implements OnInit {
 
-  constructor(private service: SharedService, public dialog: MatDialog, private router: Router, public accountService: AccountService) { }
+  constructor(
+    private service: SharedService,
+    public dialog: MatDialog,
+    private router: Router,
+    public accountService: AccountService,
+    private titleService: Title,
+    private professorService: ProfessorService) { }
 
   professorsList: any = [];
-  searchProfessor = '';
+  professorsListNames: any = [];
+
+  CONTENT_KEY = 'content';
+  TOTAL_ELEMENTS_KEY = 'totalElements';
+
   totalProfessors = 0;
-  movieListWithoutFilter: any = [];
-  displayedColumns: string[] = ['professor', 'interests', 'options'];
-  rating = 0;
-  localData = '';
-  userId = 0;
-  public RatingList: any = [];
+  professors: Professor[] = [];
+  displayedColumns: string[] = ['professor', 'interests', 'thesis'];
+
 
   ngOnInit(): void {
-    this.service.getCount().subscribe(
-      count => this.totalProfessors = count
-    );
-    this.refreshList(1, 10, this.searchProfessor);
+    // this.service.getCount().subscribe(
+    //   count => this.totalProfessors = count
+    // );
+    this.refreshList(0, 5);
   }
 
-  refreshList(page: number, pageSize: number, title: string): void {
-    this.service.getProfessorPagination(page, pageSize, title).subscribe(data => {
+  refreshList(page: number, pageSize: number): void {
+    this.service.getProfessorPagination(page, pageSize).subscribe(data => {
       this.professorsList = data;
     });
   }
@@ -42,19 +51,19 @@ export class ProfessorsListComponent implements OnInit {
   onPaginateChange(event: PageEvent): void {
     const page = event.pageIndex + 1;
     const pageSize = event.pageSize;
-    this.refreshList(page, pageSize, this.searchProfessor);
+    this.refreshList(page, pageSize);
   }
 
   onSearchClear(): void {
-    this.searchProfessor = '';
-    this.applyFilter(this.searchProfessor);
+    // this.searchProfessor = '';
+    // this.applyFilter(this.searchProfessor);
   }
 
-  applyFilter(searchProfessor: any): void {
-    this.service.getProfessorPagination(1, 10, searchProfessor).subscribe(data => {
-      this.professorsList = data;
-    });
-  }
+  // applyFilter(searchProfessor: any): void {
+  //   this.service.getProfessorPagination(1, 10).subscribe(data => {
+  //     this.professorsList = data;
+  //   });
+  // }
 
   openProfessorInfo(row: any): void {
     this.dialog.open(ProfessorsInfoComponent,
@@ -65,6 +74,23 @@ export class ProfessorsListComponent implements OnInit {
         }
       });
   }
+
+  setProfessors(page: number, size: number): void {
+    this.professorService.getAll(page, size).subscribe(
+      data => {
+        this.professors = data[this.CONTENT_KEY],
+          this.totalProfessors = data[this.TOTAL_ELEMENTS_KEY];
+      }
+    );
+  }
+
+
+  public nextPage(event: PageEvent): void {
+    const page = event.pageIndex;
+    const size = event.pageSize;
+    this.setProfessors(page, size);
+  }
+
 
 
 

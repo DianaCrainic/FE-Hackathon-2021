@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Register');
-    // this.service.formModel.reset();
   }
 
   get fields(): any {
@@ -46,7 +45,6 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-
     this.loading = true;
     this.authenticationService.register({
       serialNumber: this.fields.serialNumber.value,

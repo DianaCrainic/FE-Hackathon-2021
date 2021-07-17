@@ -1,4 +1,4 @@
-<div class="search-div table">
+<!-- <div class="search-div table">
     <mat-form-field class="search-form-field" floatLabel="never">
       <input matInput [(ngModel)]="searchProfessor" placeholder="Search professor..." autocomplete="off"
         (keyup)="applyFilter(searchProfessor)">
@@ -6,47 +6,73 @@
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-  </div>
+  </div> -->
   
-  <div class="mat-elevation-z8">
-    <mat-table [dataSource]="professorsList" matSort>
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="professorsList.content" matSort>
       <ng-container matColumnDef="professor">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Professor</mat-header-cell>
-        <mat-cell *matCellDef="let prof" class="mat-column-trailerLink">{{prof.name}}</mat-cell>
+        <mat-cell *matCellDef="let prof">{{prof.academicRank}} {{prof.name}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="interests">
         <mat-header-cell *matHeaderCellDef>Interests</mat-header-cell>
+
+        <mat-chip-list aria-label="Interests">
+          <mat-chip color="primary">Test</mat-chip>
+        </mat-chip-list>
+
         <mat-cell *matCellDef="let prof">
-          <div>
+          <mat-chip-list *ngFor="let interest of prof.interests">
+            <mat-chip color="primary" selected>{{interest.name}}</mat-chip>
+          </mat-chip-list>
+          <!-- <div>
             <div *ngFor="let interest of prof.interests">{{interest.name}}</div>
-          </div>
+          </div> -->
         </mat-cell>
       </ng-container>
   
-      <ng-container matColumnDef="options">
-        <mat-header-cell *matHeaderCellDef>Options</mat-header-cell>
+      <ng-container matColumnDef="thesis">
+        <mat-header-cell *matHeaderCellDef>Thesis</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <button mat-icon-button color="primary" title="Professor Details" (click)="openProfessorInfo(row)">
-            <mat-icon>info</mat-icon>
+            <mat-icon>insert_drive_file</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="loading">
-        <mat-footer-cell *matFooterCellDef colspan="6">
-          Loading data...
-        </mat-footer-cell>
-      </ng-container>
-      <ng-container matColumnDef="noData">
-        <mat-footer-cell *matFooterCellDef colspan="6">
-          No data.
-        </mat-footer-cell>
-      </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':!(professorsList!=null && professorsList.length==0)}">
-      </mat-footer-row>
     </mat-table>
     <mat-paginator [length]="totalProfessors" [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="10" showFirstLastButtons
       (page)="onPaginateChange($event)"></mat-paginator>
-  </div>
+  </div> 
+
+
+
+
+
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 15]" [pageSize]="5" [length]="totalProfessors" (page)="nextPage($event)"></mat-paginator>
+<table>
+    <thead>
+        <tr>
+            <th>Professor</th>
+            <th>Interests</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let prof of professorsList.content'>
+            <td>{{prof.name}}</td>
+
+            <td><div *ngFor="let interest of prof.interests">{{interest.name}}</div></td>
+            
+            <td> -->
+                <!-- <a routerLink="{{patient.id}}/programari"> -->
+                    <!-- <mat-icon>info</mat-icon> -->
+                <!-- </a> -->
+            <!-- </td>
+            
+        </tr>
+    </tbody>
+</table>
+ -->

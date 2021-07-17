@@ -23,7 +23,12 @@ export class HeaderComponent implements OnInit {
   }
 
   public isUserLoggedIn(): boolean {
-    return Object.keys(this.getUser()).length !== 0;
+    if (this.getUser()) {
+      return Object.keys(this.getUser()).length !== 0;
+    }
+    else {
+      return false;
+    }
   }
 
 }

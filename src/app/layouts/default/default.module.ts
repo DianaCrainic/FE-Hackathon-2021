@@ -26,7 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    MatExpansionModule
+    MatExpansionModule,
+    MatChipsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
