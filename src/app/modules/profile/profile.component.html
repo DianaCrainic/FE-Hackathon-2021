@@ -1,0 +1,4 @@
+<div class="card">
+    <img src='{{ "assets/images/" + (user.role | lowercase) + ".png" }}'>
+    <h1>{{(person$ | async)?.name}}</h1>
+</div>

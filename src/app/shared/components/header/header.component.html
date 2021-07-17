@@ -10,11 +10,16 @@
     <span class="app-name">Hackathon</span>
     <div class="header-right">
       <span class="redirect" routerLink="">Home</span>
-      <span class="redirect" routerLink="/professors">Professors</span>
-      <span class="redirect" routerLink="/conversations">My Conversations</span>
-      <span class="redirect" *ngIf="!isUserLoggedIn()" routerLink="/register" routerLinkActive="active">Register</span>
-      <span class="redirect" *ngIf="!isUserLoggedIn()" routerLink="/login"  routerLinkActive="active">Login</span>
-      <span class="redirect" *ngIf="isUserLoggedIn()" (click)="logout()">Logout</span>
+      <ng-container *ngIf="isUserLoggedIn()">
+        <span class="redirect" *ngIf="isUserStudent()" routerLink="/professors">Professors</span>
+        <span class="redirect" routerLink="/conversations">My Conversations</span>
+        <span class="redirect" routerLink="/profile">Profile</span>
+        <span class="redirect" (click)="logout()">Logout</span>
+      </ng-container>
+      <ng-container *ngIf="!isUserLoggedIn()">
+        <span class="redirect" *ngIf="!isUserLoggedIn()" routerLink="/register" routerLinkActive="active">Register</span>
+        <span class="redirect" *ngIf="!isUserLoggedIn()" routerLink="/login"  routerLinkActive="active">Login</span>
+      </ng-container>
     </div>
   </div>
 </body>

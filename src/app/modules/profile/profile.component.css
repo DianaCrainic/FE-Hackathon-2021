@@ -1,0 +1,28 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 40%;
+    margin: auto;
+    align-items: center;
+    font-family: arial;
+}
+
+.card .title {
+    color: grey;
+    font-size: 18px;
+}
+
+.card img {
+    width: 50%;
+    height: 50%;
+    padding: 15px;
+}
+
+@media (max-width: 770px) {
+    .card {
+        width: 80%;
+    }
+    .card img {
+        width: 70%;
+        height: 70%;
+    }
+}
