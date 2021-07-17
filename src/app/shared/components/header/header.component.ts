@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../../modules/account/shared/account.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/shared/models/users/user.model';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,21 @@ import { AccountService } from '../../../modules/account/shared/account.service'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public accountService: AccountService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+  }
+
+  public logout(): void {
+    this.authenticationService.logout();
+  }
+
+  public getUser(): User {
+    return this.authenticationService.currentUserValue;
+  }
+
+  public isUserLoggedIn(): boolean {
+    return Object.keys(this.getUser()).length !== 0;
   }
 
 }

@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { first } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-register',
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
 
   constructor(
+    private titleService: Title,
     public service: AccountService,
     private router: Router,
     private toastr: ToastrService,
@@ -31,6 +34,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Register');
     // this.service.formModel.reset();
   }
 

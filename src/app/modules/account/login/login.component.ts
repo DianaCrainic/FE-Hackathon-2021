@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Autentificare');
+    this.titleService.setTitle('Login');
     if (Object.keys(this.authenticationService.currentUserValue).length !== 0) {
       this.router.navigate(['/']);
     }
