@@ -11,6 +11,7 @@ import { ProfessorsInfoComponent } from './modules/professors/professors-info/pr
 import { AuthGuard } from './core/guards/auth.guard';
 import { RoleGuard } from './core/guards/role.guard';
 import { ProfileComponent } from './modules/profile/profile.component';
+import { ConversationComponent } from './modules/conversation/conversation.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,11 @@ const routes: Routes = [
       path: 'professors/:id',
       component: ProfessorsInfoComponent
     }, {
-      path: 'conversations/:id',
+      path: 'conversations',
       component: ConversationsComponent
+    }, {
+      path: 'conversations/:id',
+      component: ConversationComponent
     }, {
       path: 'register',
       component: RegisterComponent

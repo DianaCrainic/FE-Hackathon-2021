@@ -12,6 +12,7 @@
       <span class="redirect" routerLink="">Home</span>
       <ng-container *ngIf="isUserLoggedIn()">
         <span class="redirect" *ngIf="isUserStudent()" routerLink="/professors">Professors</span>
+        <span class="redirect" *ngIf="isUserProfessor()" routerLink="/professors/{{getUser().ownerId}}">My thesis</span>
         <span class="redirect" routerLink="/conversations">My Conversations</span>
         <span class="redirect" routerLink="/profile">Profile</span>
         <span class="redirect" (click)="logout()">Logout</span>

@@ -29,4 +29,8 @@ export class HeaderComponent implements OnInit {
   public isUserStudent() {
     return this.getUser().role == 'STUDENT';
   }
+
+  public isUserProfessor() {
+    return this.getUser().role == 'PROFESSOR';
+  }
 }
