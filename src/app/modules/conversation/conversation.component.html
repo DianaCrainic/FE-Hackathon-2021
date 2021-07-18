@@ -1,0 +1,22 @@
+<div class="card">
+    <div *ngFor='let message of messages'>
+        <div *ngIf="message.senderRole == getUser().role">
+            <div class="message-body right">
+                {{message.content}}
+            </div>
+        </div>
+        <div *ngIf="message.senderRole !== getUser().role">
+            <div class="message-body left">
+                {{message.content}}
+            </div>
+        </div>
+    </div>
+    <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()">
+        <div class="form-group">
+            <input type="text" formControlName="messageContent" id="messageContent" class="form-control" />
+        </div>
+        <button type="submit" [disabled]="!sendMessageForm.valid" class="btn btn-primary">
+            send
+        </button>
+    </form>
+</div>

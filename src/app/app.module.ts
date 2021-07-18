@@ -10,11 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from './modules/shared.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ConversationComponent } from './modules/conversation/conversation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ConversationComponent
     ],
   imports: [
     BrowserModule,

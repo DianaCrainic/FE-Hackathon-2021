@@ -1,0 +1,52 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 40%;
+    margin: auto;
+    font-family: arial;
+    padding: 20px;
+}
+
+@media (max-width: 770px) {
+    .card {
+        width: 80%;
+    }
+}
+
+.left {
+    float: left;
+    background-color: #e4e6ee;
+    color: #485abd
+}
+
+.right {
+    float: right;
+    background-color: #485abd;
+    color: #fff;
+}
+
+.message-body {
+    padding: 16px 12px;
+    max-width: 45%;
+    flex: initial;
+    margin: 6px 0;
+    border-radius: 5px;
+    font-weight: 400;
+}
+
+form {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-control {
+    flex: 2;
+    width: 100%;
+}
+
+button {
+    background-color: #485abd;
+}
