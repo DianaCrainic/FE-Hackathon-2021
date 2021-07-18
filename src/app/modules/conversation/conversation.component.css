@@ -34,7 +34,9 @@
 }
 
 form {
-    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 2px solid #485abd;
+    padding-top: 15px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -42,11 +44,22 @@ form {
     align-items: center;
 }
 
-.form-control {
-    flex: 2;
-    width: 100%;
+form > input {
+    margin-right: 2em;
 }
 
-button {
+.form-control {
+    flex-grow: 2;
+    width: auto;
+    color: #485abd;
+}
+
+.form-control::placeholder {
+    color: #485abd;
+}
+
+.btn-primary, .btn-primary:disabled {
     background-color: #485abd;
+    border-color: #485abd;
+    font-weight: 700;
 }
