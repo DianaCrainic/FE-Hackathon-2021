@@ -18,6 +18,7 @@ export class ConversationComponent implements OnInit {
   user: User;
   conversation: Conversation | undefined;
   messages: Message[] | undefined;
+  needToCreateConversation: boolean = false;
 
   sendMessageForm = this.formBuilder.group({
     messageContent: new FormControl('', Validators.required),
@@ -36,8 +37,15 @@ export class ConversationComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Conversation');
-    this.conversationService.getById(this.getConversationId()).subscribe(data => this.conversation = data);
-    this.messageService.getByConversationId(this.getConversationId()).subscribe(data => this.messages = data);
+    this.conversationService.getById(this.getConversationId()).subscribe(
+      data => {
+        this.conversation = data;
+        this.messageService.getByConversationId(this.getConversationId()).subscribe(data => this.messages = data);
+      },
+      error => {
+        this.needToCreateConversation = true;
+      }
+    );
   }
 
   getConversationId(): number {
@@ -53,10 +61,16 @@ export class ConversationComponent implements OnInit {
   }
 
   sendMessage(): void {
+    if (this.needToCreateConversation) {
+      this.conversationService.create({studentId: this.getUser().ownerId!, professorId: this.getConversationId()}).subscribe();
+    }
+
     this.messageService.create({
       senderRole: this.getUser().role!,
       conversationId: this.getConversationId(),
       content: this.fields.messageContent.value
-    });
+    }).subscribe(
+      () => this.messages!.push({senderRole: this.getUser().role!, content: this.fields.messageContent.value})
+    );
   }
 }

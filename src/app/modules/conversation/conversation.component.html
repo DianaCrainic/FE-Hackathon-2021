@@ -12,11 +12,9 @@
         </div>
     </div>
     <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()">
-        <div class="form-group">
-            <input type="text" formControlName="messageContent" id="messageContent" class="form-control" />
-        </div>
+        <input placeholder="New message..." type="text" formControlName="messageContent" id="messageContent" class="form-control" />
         <button type="submit" [disabled]="!sendMessageForm.valid" class="btn btn-primary">
-            send
+            Send
         </button>
     </form>
 </div>
