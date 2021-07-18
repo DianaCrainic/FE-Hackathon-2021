@@ -22,10 +22,10 @@
         <mat-cell *matCellDef="let prof">{{prof.schedule}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="thesis">
-        <mat-header-cell *matHeaderCellDef>Thesis</mat-header-cell>
+      <ng-container matColumnDef="theses">
+        <mat-header-cell *matHeaderCellDef>Theses</mat-header-cell>
         <mat-cell *matCellDef="let prof">
-          <button mat-icon-button color="primary" title="Thesis" (click)="openProfessorInfo(prof.id)">
+          <button mat-icon-button color="primary" title="Theses" (click)="openProfessorInfo(prof.id)">
             <mat-icon>insert_drive_file</mat-icon>
           </button>
         </mat-cell>

@@ -1,6 +1,12 @@
-
+<!-- <div *ngIf="isUserProfessor()"> -->
+    <button mat-raised-button color="primary" (click)="addButton()">Add thesis</button>
+<!-- </div> -->
+<br><br>
 <div *ngFor="let th of thesis" class="example-card">
-    <mat-card >
+    <mat-card class="img-wrap">
+        <!-- <div *ngIf="isUserProfessor()"> -->
+            <span class="close" onclick="delete(th)">&times;</span>
+        <!-- </div> -->
         <mat-card-title>
             {{th.title}}
         </mat-card-title>
@@ -14,6 +20,10 @@
         <div>
             Assigned student: -
         </div>
+        <br>
+        <!-- <div *ngIf="isUserProfessor()"> -->
+            <button mat-raised-button color="primary" (click)="editButton(th)">Edit thesis</button>
+        <!-- </div> -->
 
     </mat-card>
 </div>

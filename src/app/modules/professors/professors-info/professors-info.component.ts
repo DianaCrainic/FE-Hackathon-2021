@@ -4,6 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ThesisService } from 'src/app/core/services/thesis.service';
 import { Thesis } from 'src/app/shared/models/thesis.model';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { AddThesisComponent } from '../../thesis/add-thesis/add-thesis.component';
+import { EditThesisComponent } from '../../thesis/edit-thesis/edit-thesis.component';
+import { User } from 'src/app/shared/models/users/user.model';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-professors-info',
@@ -19,9 +24,16 @@ export class ProfessorsInfoComponent implements OnInit {
     private route: ActivatedRoute,
     private thesisService: ThesisService,
     private toastr: ToastrService,
+    private dialog: MatDialog,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
+    this.refereshList();
+    this.titleService.setTitle('Theses');
+  }
+
+  refereshList() {
     this.thesisService.getAll(this.getProfessorId()).subscribe(
       thesis => {
         this.thesis = thesis;
@@ -31,12 +43,43 @@ export class ProfessorsInfoComponent implements OnInit {
         this.toastr.error('Error!', 'Thesis not found');
       }
     );
-    this.titleService.setTitle('Theses');
   }
-
-  
 
   getProfessorId(): number {
     return this.route.snapshot.params.id;
+  }
+
+  delete(thesis: Thesis): void {
+    this.thesisService.deleteById(thesis.id).subscribe(
+      (resp) => {
+        console.log(resp);
+      },
+      (err) => { this.toastr.error('Error!', 'Thesis not found'); }
+    );
+    this.refereshList();
+  }
+
+  addButton() {
+    this.dialog.open(AddThesisComponent);
+  }
+
+  editButton(thesis: Thesis) {
+    this.dialog.open(EditThesisComponent,
+      {
+        data:
+        {
+          id: thesis.id,
+          title: thesis.title,
+          description: thesis.description,
+          student: thesis.student
+        }
+      });
+  }
+  public getUser(): User {
+    return this.authenticationService.currentUserValue;
+  }
+
+  public isUserProfessor() {
+    return this.getUser().role == 'PROFESSOR';
   }
 }

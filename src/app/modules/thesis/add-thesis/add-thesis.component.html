@@ -1,0 +1,40 @@
+<!-- <h2 mat-dialog-title>Add a new thesis!</h2>
+<mat-dialog-content>
+    <mat-form-field style="width:400px !important">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" #title placeholder="Title">
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width:400px !important">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" #description placeholder="description">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field style="width:400px !important">
+        <mat-label>Student</mat-label>
+        <input matInput type="text" #student placeholder="student">
+    </mat-form-field>
+    <br>
+    <button class="add-thesis-button" mat-raised-button color="primary" (click)="addThesis()"
+        [mat-dialog-close]="true">Add</button>
+</mat-dialog-content> -->
+
+<form [formGroup]="addThesisForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" formControlName="title" id="title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" formControlName="description" id="description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="student">Student</label>
+        <input type="text" formControlName="student" id="student" class="form-control" />
+    </div>
+    <button type="submit" [disabled]="!addThesisForm.valid" class="btn btn-primary">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Add
+    </button>
+</form>

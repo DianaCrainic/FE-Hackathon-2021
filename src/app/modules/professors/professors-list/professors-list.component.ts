@@ -28,7 +28,7 @@ export class ProfessorsListComponent implements OnInit {
 
   totalProfessors = 0;
   professors: Professor[] = [];
-  displayedColumns: string[] = ['professor', 'interests', 'schedule', 'thesis', 'message'];
+  displayedColumns: string[] = ['professor', 'interests', 'schedule', 'theses', 'message'];
 
   ngOnInit(): void {
     this.setProfessors(0, 5);
