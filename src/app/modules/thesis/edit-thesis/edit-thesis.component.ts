@@ -43,10 +43,12 @@ export class EditThesisComponent implements OnInit {
   //if (this.user.role === 'PROFESSOR') {
       this.thesisService.getById(this.data.id as number).subscribe(
         thesis => {
+          console.log('thesis', thesis);
+
           this.updateThesisForm.controls['title'].setValue(thesis.title),
             this.updateThesisForm.controls['description'].setValue(thesis.description),
             this.updateThesisForm.controls['student'].setValue(thesis.student)
-        }
+          }
       );
     //}
   }
@@ -69,6 +71,7 @@ export class EditThesisComponent implements OnInit {
         description: this.thesisFields.description.value,
         student: this.thesisFields.student.value
       }).pipe(first()).subscribe();
+      this.loading = false;
     } 
     else {
       if (this.updateThesisForm.invalid) {

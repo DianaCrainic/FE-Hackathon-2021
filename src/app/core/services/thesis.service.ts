@@ -19,8 +19,8 @@ export class ThesisService {
         return this.http.get<Thesis>(`${environment.apiUrl}/api/v1/theses/${id}`);
     }
 
-    update(id: number, thesis: UpdateThesisRequest): Observable<Thesis> {
-        return this.http.post<Thesis>(`${environment.apiUrl}/api/v1/theses/${id}`, thesis);
+    update(id: number, thesis: UpdateThesisRequest): Observable<any> {
+        return this.http.put<Thesis>(`${environment.apiUrl}/api/v1/theses/${id}`, thesis);
     }
 
     deleteById(id: number): Observable<Thesis> {

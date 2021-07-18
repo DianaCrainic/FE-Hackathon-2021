@@ -29,7 +29,7 @@
                 <label for="name">Schedule</label>
                 <input type="text" formControlName="schedule" id="schedule" class="form-control" />
             </div>
-            <button type="submit" [disabled]="!updateProfessorForm.valid" class="btn btn-primary">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!updateProfessorForm.valid" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Update
             </button>
@@ -45,7 +45,7 @@
                 <label for="name">Serial Number</label>
                 <input type="text" formControlName="serialNumber" id="serialNumber" class="form-control" />
             </div>
-            <button type="submit" [disabled]="!updateStudentForm.valid" class="btn btn-primary">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!updateStudentForm.valid" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                 Update
             </button>

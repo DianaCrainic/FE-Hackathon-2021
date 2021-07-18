@@ -5,7 +5,7 @@
 <div *ngFor="let th of thesis" class="example-card">
     <mat-card class="img-wrap">
         <!-- <div *ngIf="isUserProfessor()"> -->
-            <span class="close" onclick="delete(th)">&times;</span>
+            <button  class="close" (click)="delete(th)">&times;</button >
         <!-- </div> -->
         <mat-card-title>
             {{th.title}}

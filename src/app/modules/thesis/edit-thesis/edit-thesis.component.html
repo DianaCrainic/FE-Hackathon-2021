@@ -33,7 +33,7 @@
             <label for="student">Student</label>
             <input type="text" formControlName="student" id="student" class="form-control" />
         </div>
-        <button type="submit" [disabled]="!updateThesisForm.valid" class="btn btn-primary">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!updateThesisForm.valid" class="btn btn-primary" [mat-dialog-close]="true">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Update
         </button>
