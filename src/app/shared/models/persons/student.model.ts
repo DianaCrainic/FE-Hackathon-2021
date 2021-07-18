@@ -1,3 +1,4 @@
+import { Interest } from '../interest.model';
 import { Person } from './person.model';
 
 export class Student implements Person {
@@ -5,5 +6,5 @@ export class Student implements Person {
     name!: string;
     email!: string;
     serialNumber!: number;
-    interests!: string[];
+    interests!: Interest[];
 }

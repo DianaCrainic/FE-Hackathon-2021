@@ -1,0 +1,54 @@
+<div class="card">
+    <img src='{{ "assets/images/" + (user.role | lowercase) + ".png" }}'>
+    <mat-form-field class="chip-list" appearance="fill">
+        <mat-label>Interests</mat-label>
+        <mat-chip-list #chips aria-label="Interests" multiple [formControl]="formControl">
+          <mat-chip
+              *ngFor="let interest of currentInterests"
+              [value]="interest"
+              (removed)="removeInterest(interest)">
+            {{interest}}
+          </mat-chip>
+          <input
+            placeholder="New interest..."
+            [matChipInputFor]="chips"
+            (matChipInputTokenEnd)="addInterestFromInput($event)">
+        </mat-chip-list>
+      </mat-form-field>
+    <ng-container *ngIf='user.role == "PROFESSOR"'>
+        <form [formGroup]="updateProfessorForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" id="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="name">Academic rank</label>
+                <input type="text" formControlName="academicRank" id="academicRank" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="name">Schedule</label>
+                <input type="text" formControlName="schedule" id="schedule" class="form-control" />
+            </div>
+            <button type="submit" [disabled]="!updateProfessorForm.valid" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Update
+            </button>
+        </form>
+    </ng-container>
+    <ng-container *ngIf='user.role == "STUDENT"'>
+        <form [formGroup]="updateStudentForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" id="name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="name">Serial Number</label>
+                <input type="text" formControlName="serialNumber" id="serialNumber" class="form-control" />
+            </div>
+            <button type="submit" [disabled]="!updateStudentForm.valid" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Update
+            </button>
+        </form>
+    </ng-container>
+</div>

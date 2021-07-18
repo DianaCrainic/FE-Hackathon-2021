@@ -1,3 +1,4 @@
+import { Interest } from '../interest.model';
 import { Person } from './person.model';
 
 export class Professor implements Person {
@@ -5,5 +6,6 @@ export class Professor implements Person {
     name!: string;
     email!: string;
     academicRank!: string;
-    interests!: string[];
+    schedule!: string;
+    interests!: Interest[];
 }

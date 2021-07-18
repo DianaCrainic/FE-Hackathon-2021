@@ -6,6 +6,7 @@ import { ProfessorsComponent } from 'src/app/modules/professors/professors.compo
 import { ConversationsComponent } from 'src/app/modules/conversations/conversations.component';
 import { ProfessorsListComponent } from 'src/app/modules/professors/professors-list/professors-list.component';
 import { ProfessorsInfoComponent } from 'src/app/modules/professors/professors-info/professors-info.component';
+import { ProfileComponent } from 'src/app/modules/profile/profile.component';
 
 import { RegisterComponent } from 'src/app/modules/account/register/register.component';
 import { LoginComponent } from 'src/app/modules/account/login/login.component';
@@ -37,7 +38,8 @@ import { MatChipsModule } from '@angular/material/chips';
     ProfessorsComponent,
     ConversationsComponent,
     ProfessorsListComponent,
-    ProfessorsInfoComponent
+    ProfessorsInfoComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

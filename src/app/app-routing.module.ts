@@ -8,6 +8,9 @@ import { LoginComponent } from './modules/account/login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ConversationsComponent } from './modules/conversations/conversations.component';
 import { ProfessorsInfoComponent } from './modules/professors/professors-info/professors-info.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { RoleGuard } from './core/guards/role.guard';
+import { ProfileComponent } from './modules/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -15,10 +18,14 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [{
       path: '',
-      component: HomeComponent
+      component: HomeComponent,
     }, {
       path: 'professors',
-      component: ProfessorsComponent
+      component: ProfessorsComponent,
+      canActivate: [AuthGuard, RoleGuard],
+      data: {
+          role: 'STUDENT'
+      }
     }, {
       path: 'professors/:id',
       component: ProfessorsInfoComponent
@@ -31,6 +38,10 @@ const routes: Routes = [
     }, {
       path: 'login',
       component: LoginComponent
+    }, {
+      path: 'profile',
+      component: ProfileComponent,
+      canActivate: [AuthGuard]
     }],
   },
   {

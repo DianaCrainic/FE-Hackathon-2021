@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoginRequest } from 'src/app/shared/models/users/login-request';
@@ -14,7 +15,10 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private router: Router
+    ) {
         const user = localStorage.getItem('user') || '{}';
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(user));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -29,6 +33,7 @@ export class AuthenticationService {
             .pipe(map(user => {
                 localStorage.setItem('user', JSON.stringify(user));
                 this.currentUserSubject.next(user);
+                this.router.navigate(['login']);
                 return user;
             }));
     }
@@ -45,5 +50,6 @@ export class AuthenticationService {
     logout(): void {
         localStorage.removeItem('user');
         this.currentUserSubject.next({});
+        this.router.navigate(['login']);
     }
 }
